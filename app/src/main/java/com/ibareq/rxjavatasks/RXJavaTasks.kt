@@ -1,5 +1,6 @@
 package com.ibareq.rxjavatasks
 
+import android.util.Log
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
@@ -51,14 +52,11 @@ object RXJavaTasks {
 
     /**
      * add the required operators to emit data from 21 to 80 only
-     * let it emit characters form A to Z each 1 second
      */
 
     fun task4(): Observable<Int> {
-        val list = listOf('A', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'o', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
-        return Observable.fromIterable(list).take(21)
-            .zipWith(Observable.interval(1, TimeUnit.SECONDS), { item, _ -> item.code })
-
+        return Observable.range(21,60)
+            .zipWith(Observable.interval(300, TimeUnit.MILLISECONDS), {item, _ -> item})
     }
 
     /**
